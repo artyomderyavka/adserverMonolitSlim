@@ -1,0 +1,2 @@
+'/hello/{name}': '\Controller\HelloController:hello'
+'/goodbye/{name}': '\Controller\HelloController:goodbye'
