@@ -8,7 +8,6 @@
 
 use Symfony\Component\Yaml\Yaml;
 
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require './vendor/autoload.php';
@@ -19,21 +18,14 @@ $serviceContentRoutes = Yaml::parse(file_get_contents('./services/adserverconten
 
 $routes = array_merge($monolithRoutes, $serviceTargetRoutes, $serviceContentRoutes);
 
-echo "<pre>";
-
-//var_dump($routes); die;
-
 $configuration = [
     'settings' => [
         'displayErrorDetails' => true,
     ],
 ];
-$c = new \Slim\Container($configuration);
-$app = new \Slim\App($c);
 
-
-foreach ($routes as $route => $callableControllerAction) {
-    $app->map(['GET', 'POST'], $route, $callableControllerAction);
-}
-
-$app->run();
+$container = new \Slim\Container($configuration);
+$container['targetServiceClient'] = function ($container) {
+    return new \AdServer\LocalClient();
+};
+\AdServer\Engine::run($container, $routes);

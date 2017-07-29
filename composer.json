@@ -1,8 +1,8 @@
 {
     "require": {
         "wikimedia/composer-merge-plugin": "dev-master",
-        "slim/slim": "^3.0",
-        "symfony/yaml": "^3.3"
+        "symfony/yaml": "^3.3",
+        "artyomderyavka/adserverengineslim": "dev-master"
     },
     "autoload": {
       "psr-4": {
