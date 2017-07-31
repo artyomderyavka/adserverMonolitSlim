@@ -31,6 +31,9 @@ class HelloController extends Controller
         $response->getBody()->write("Hello, $name" . PHP_EOL);
         $response->getBody()->write("Target Service Respond with message " . $serviceResponse->message);
 
+        //$data = tideways_disable();
+        //echo "<pre>"; print_r($data);
+
         return $response;
     }
 

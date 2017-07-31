@@ -8,6 +8,8 @@
 
 use Symfony\Component\Yaml\Yaml;
 
+
+//tideways_enable();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require './vendor/autoload.php';
@@ -28,4 +30,8 @@ $container = new \Slim\Container($configuration);
 $container['targetServiceClient'] = function ($container) {
     return new \AdServer\LocalClient();
 };
+$container['contentServiceClient'] = function ($container) {
+    return new \AdServer\LocalClient();
+};
 \AdServer\Engine::run($container, $routes);
+
